@@ -1,0 +1,47 @@
+{
+  "name": "leave-system",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "animate.css": "^3.7.0",
+    "axios": "^0.18.1",
+    "babel-plugin-transform-remove-strict-mode": "0.0.2",
+    "core-js": "^2.6.5",
+    "echarts": "^4.5.0",
+    "element-ui": "^2.12.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.4.1",
+    "mint-ui": "^2.2.13",
+    "moment": "^2.24.0",
+    "muse-ui": "^3.0.2",
+    "muse-ui-loading": "^0.2.0",
+    "vconsole": "^3.3.4",
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.3",
+    "vuex": "^3.0.1",
+    "xlsx": "^0.15.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.6.0",
+    "@vue/cli-service": "^3.6.0",
+    "babel-plugin-component": "^1.1.1",
+    "babel-plugin-import": "^1.12.0",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
