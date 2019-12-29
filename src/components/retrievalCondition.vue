@@ -170,7 +170,7 @@ export default {
                     }
             }).then(function(response){
                 _self.objSpecialty = JSON.parse(response.data); 
-                console.log(response.data);  
+                // console.log(response.data);  
             }).catch(function(error){
                 _self.$notify.error({
                     duration:2000,
@@ -198,7 +198,7 @@ export default {
                 });
             }); 
         },
-        getYear: function () {
+        getYear() {
             var date = new Date();
             var year = date.getFullYear().toString().substr(2, 2);
             var month = date.getMonth() + 1;
@@ -215,9 +215,9 @@ export default {
             return array.reverse();
 
         },
-        setJus: function () {
+        setJus() {
             let info = JSON.parse(this.teaInfo);
-
+            console.log(info);
             if (this.Post == "班主任") {
                 let classNum = info.ClassNum.toString();
                 this.College = classNum.substr(0, 2).toString();
@@ -229,10 +229,11 @@ export default {
                 this.disGrade = true;
                 this.disClass = true;
             } else if (this.Post == "辅导员") {
-                this.College = info.ClassSpecialityID.substr(0, 2);
+                this.College = info.ClassSpecialityID.toString().substr(0, 2);
+                console.log(this.College);
                 this.disCollege  = true;
             } else if (this.Post == "院领导") {
-                this.College = info.CollegeNum;
+                this.College = info.CollegeNum.toString();
                 this.disCollege = true;
             }
             localStorage.college = this.College;

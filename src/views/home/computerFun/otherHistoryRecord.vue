@@ -5,9 +5,7 @@
                 <mt-button icon="back">返回</mt-button>
             </router-link>
         </mt-header>
-
         <condition @conditionData="receiveData" :otherRecord="true"></condition>
-
         <div class="table">
             <el-row>
                 <el-col :span="5" :push="19">

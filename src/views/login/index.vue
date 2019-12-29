@@ -31,7 +31,7 @@ export default {
 			loginID:"",
 			pwd:"",
 			post:"班主任",
-			selValues:["班主任","辅导员","院领导","校领导"]
+			selValues:["班主任","辅导员","院领导","校领导","公寓中心"]
 		}
 	},
 	components:{
@@ -51,6 +51,8 @@ export default {
 					loginID += "3";
 				}else if(this.post === "校领导"){
 					loginID += "4";
+				}else if(this.post === "公寓中心"){
+					loginID += "5";
 				}
 				this.$ajax.post(_self.baseUrl + "/LoginModule/TeacherLogin",{           
 					Name:loginID,

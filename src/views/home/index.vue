@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import { MessageBox } from 'mint-ui'
 import leaveCard from '@/components/leaveCard.vue'
 export default {
     name:"homePage",
@@ -97,8 +98,15 @@ export default {
             
         },
         loginout(){
-            localStorage.clear();
-            this.$router.push("/login"); 
+            let _self = this;
+            MessageBox.confirm('确定退出登录?').then(function(response) {
+                localStorage.clear();
+                localStorage.isLogin = false;
+                // localStorage.token = "";
+                _self.$router.push('login');
+            }).catch(function(error){
+
+            });
         },
         getTeacherInfo(){
             let _self = this;

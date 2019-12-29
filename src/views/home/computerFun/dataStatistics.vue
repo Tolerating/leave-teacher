@@ -63,7 +63,7 @@ export default {
                 }).then(function(response){
                     loading.close();
                     let data = JSON.parse(response.data);
-                    console.log(data);
+                    console.log(response);
                     _self.total = data.Total;
                     _self.initChartPie(data.Data);                        
                     
@@ -108,6 +108,7 @@ export default {
             }
         },
         initChartPie(history){
+            let _self = this;
             var myChart = echarts.init(document.getElementById("main"), {
                 noDataLoadingOption: {
                     text: '暂无数据',
@@ -189,8 +190,7 @@ export default {
             // myChart.hideLoading();
         },
         GetHistoryPie(){
-            console.log(this.GetHistoryPie);
-            
+            console.log(this.GetHistoryPie);            
         }
 
     },
