@@ -92,15 +92,13 @@ export default {
 			if(localStorage.isLogin === true){
 				this.$router.push('applyLeave');
 			}
-		}
-		
+		}		
 	},
 	mounted(){
 		this.judgeLogin();
 	}
 }
 </script>
-
 <style scoped>
 /* .login_container{
 	width: 100%;
