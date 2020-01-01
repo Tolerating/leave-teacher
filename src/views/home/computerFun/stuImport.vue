@@ -82,27 +82,15 @@
                 >
                 </el-table-column>                              
             </el-table>
-            <el-row>
-                <el-col :span="10" :push="14">
-                    <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="currentPage4"
-                        :page-sizes="[10, 25, 50, 100]"
-                        :page-size="1"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="test.length">
-                    </el-pagination>
-                </el-col>
-            </el-row>
-        </div>
-            
+            <pagination @handleSizeChange='handleSizeChange' @handleCurrentChange='handleCurrentChange' :test='test'/>
+        </div>            
     </div>
 </template>
 
 <script>
 import XLSX from 'xlsx'
 import qs from 'qs'
+import pagination from '@/components/pagination.vue'
 export default {
     name:"stuImport",
     data(){
@@ -112,10 +100,11 @@ export default {
             dialogVisible :false,
             fileList: [],
             currentPage4: 1,
-            sizeRange:10
+            sizeRange:5
         }
-        
-        
+    },
+    components:{
+        pagination
     },
     methods:{
         initTable(){

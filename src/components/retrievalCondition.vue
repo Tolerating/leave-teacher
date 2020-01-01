@@ -72,7 +72,7 @@
                 </el-col>
             </template>
             <template v-if="dataStatistic">
-                <el-col :span="6" :push="1">
+                <el-col :span="5" :push="2">
                     <span class="selTitle">类别：</span>
                     <el-select v-model="LeaveRecordCategory" placeholder="请选择">
                         <el-option value="0" label="所有类别"></el-option>

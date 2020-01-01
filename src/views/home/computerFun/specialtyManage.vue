@@ -7,7 +7,7 @@
         </mt-header>
         <div class="tabBar">
             <mu-button flat color="success" @click="openTip">添加专业</mu-button>
-            <mu-button flat color="success" @click="download">学院命名规则</mu-button>
+            <mu-button flat color="success" @click="download">学院专业命名规则</mu-button>
             <el-dialog
                 title="添加专业"
                 :visible.sync="dialogVisible"
@@ -74,26 +74,14 @@
                     </template>
                 </el-table-column>            
             </el-table>
-            <el-row>
-                <el-col :span="10" :push="14">
-                    <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="currentPage4"
-                        :page-sizes="[5,10, 25, 50, 100]"
-                        :page-size="5"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="test.length">
-                    </el-pagination>
-                </el-col>
-            </el-row>
-            
+            <pagination @handleSizeChange='handleSizeChange' @handleCurrentChange='handleCurrentChange' :test='test'/>
         </div>
             
     </div>
 </template>
 
 <script>
+import pagination from '@/components/pagination.vue'
 export default {
     name:"classManage",
     data(){
@@ -106,10 +94,10 @@ export default {
             College:"",
             addSpecialityName:"",
             addSpecialityID:"",
-
         }
-        
-        
+    },
+    components:{
+        pagination
     },
     methods:{
         initTable(){
@@ -168,7 +156,7 @@ export default {
         },
         openTip(){
             let _self = this;
-            this.$confirm('请严格遵照“学院命名规则”文档进行专业的添加!', '提示', {
+            this.$confirm('请严格遵照“学院专业命名规则”文档进行专业的添加!', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
@@ -180,13 +168,13 @@ export default {
         },
         deleteSpe(index,row){
             let _self = this;
-             this.$confirm('确认删除?', '提示', {
+             this.$confirm(`确认删除 ${row.SpecialtyName} ?`, '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'
                 }).then(() => {
                      _self.$ajax.get(_self.baseUrl + "/BelongManagement/deleteSpecialty",{           
-                        params:{SpecialtyID:row.SpecialtyID},
+                        params:{SpecialtyID:row.SpecialtyID,SpecialtyNum:row.SpecialtyNum},
                         headers: {
                             'token': localStorage.token
                             }
@@ -199,11 +187,11 @@ export default {
                                 title: '成功',
                                 message: '专业已删除'
                             });
-                        }else{
+                        }else if(data == -1){
                             _self.$notify.error({
                                 duration:2000,
                                 title: '失败',
-                                message: '删除失败'
+                                message: '删除失败,专业存在关联'
                             });
                         }                        
                     }).catch(function(error){

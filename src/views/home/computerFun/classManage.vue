@@ -138,19 +138,7 @@
                     </template>
                 </el-table-column>            
             </el-table>
-            <el-row>
-                <el-col :span="10" :push="14">
-                    <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="currentPage4"
-                        :page-sizes="[5,10,25, 50, 100]"
-                        :page-size="5"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="test.length">
-                    </el-pagination>
-                </el-col>
-            </el-row>            
+            <pagination @handleSizeChange='handleSizeChange' @handleCurrentChange='handleCurrentChange' :test='test'/>
         </div>
         <el-dialog
             title="编辑班级"
@@ -197,6 +185,7 @@
 </template>
 
 <script>
+import pagination from '@/components/pagination.vue'
 import qs from 'qs'
 export default {
     name:"classManage",
@@ -228,6 +217,9 @@ export default {
         }
         
         
+    },
+    components:{
+        pagination
     },
     methods:{
         initTable(){
@@ -341,7 +333,7 @@ export default {
         },
         deleteClass(index,row){
             let _self = this;
-             this.$confirm('确认删除?', '提示', {
+             this.$confirm(`确认删除 ${row.ClassName} ?`, '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'

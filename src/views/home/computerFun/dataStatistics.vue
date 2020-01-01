@@ -1,6 +1,6 @@
 <template>
     <div class="wa_content">
-        <mt-header title="学生管理">
+        <mt-header title="数据统计">
             <router-link to="/home" slot="left">
                 <mt-button icon="back">返回</mt-button>
             </router-link>

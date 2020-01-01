@@ -134,8 +134,8 @@ export default {
             }            
         },
         checkLogin(){
-            // console.log(typeof localStorage.isLogin);
-            if(localStorage.isLogin === false || localStorage.isLogin == undefined){
+            console.log(typeof localStorage.isLogin);
+            if(localStorage.isLogin === 'false' || localStorage.isLogin == undefined){
                 this.$router.push('login');
             }
         },

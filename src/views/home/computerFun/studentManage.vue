@@ -59,20 +59,7 @@
                     </template>
                 </el-table-column>            
             </el-table>
-            <el-row>
-                <el-col :span="10" :push="14">
-                    <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="currentPage4"
-                        :page-sizes="[5,10, 25, 50, 100]"
-                        :page-size="5"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="test.length">
-                    </el-pagination>
-                </el-col>
-            </el-row>
-            
+            <pagination @handleSizeChange='handleSizeChange' @handleCurrentChange='handleCurrentChange' :test='test'/>
         </div>
         <el-dialog
             title="编辑学生信息"
@@ -142,21 +129,21 @@
                 <el-button type="danger" @click="editDialog = false,row = {}">取 消</el-button>
                 <el-button type="primary" :disabled="studentName == '' || bedroomNum == '' || tel == '' || parentTel == '' || IDCard == '' || address == ''" @click="updateStudent">完 成</el-button>
             </span>
-        </el-dialog>   
-            
+        </el-dialog>            
     </div>
 </template>
 
 <script>
 import qs from 'qs'
 import condition from "@/components/retrievalCondition.vue"
+import pagination from '@/components/pagination.vue'
 export default {
     name:"studentManage",
     data(){
         return{
-           tableData4: [],
-           objClass:[],
-           row:{},
+            tableData4: [],
+            objClass:[],
+            row:{},
             search:"",
             editDialog :false,
             currentPage4: 1,
@@ -173,7 +160,8 @@ export default {
         }              
     },
     components:{
-        condition
+        condition,
+        pagination
     },
     methods:{
         initTable(){
@@ -301,7 +289,7 @@ export default {
         },
         deleteStudent(index,row){
             let _self = this;
-            this.$confirm('确认删除?', '提示', {
+            this.$confirm(`确认删除 ${row.StudentName} ?`, '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'

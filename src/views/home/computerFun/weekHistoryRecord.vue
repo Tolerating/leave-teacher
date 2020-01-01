@@ -61,19 +61,7 @@
                     </template>
                 </el-table-column>         
             </el-table>
-            <el-row>
-                <el-col :span="10" :push="8">
-                    <el-pagination
-                        @size-change="handleSizeChange"
-                        @current-change="handleCurrentChange"
-                        :current-page="currentPage4"
-                        :page-sizes="[5,10, 25, 50, 100]"
-                        :page-size="5"
-                        layout="total, sizes, prev, pager, next, jumper"
-                        :total="updateTable.length">
-                    </el-pagination>
-                </el-col>
-            </el-row>
+            <pagination @handleSizeChange='handleSizeChange' @handleCurrentChange='handleCurrentChange' :test='updateTable'/>
         </div>
             
     </div>
@@ -82,11 +70,12 @@
 <script>
 import moment from "moment"
 import condition from "@/components/retrievalCondition.vue"
+import pagination from '@/components/pagination.vue'
 export default {
     name:"weekHistoryRecord",
     data(){
         return{
-           tableData4: [],
+            tableData4: [],
             search:"",
             dialogVisible :false,
             fileList: [],
@@ -97,7 +86,8 @@ export default {
         
     },
     components:{
-        condition
+        condition,
+        pagination
     },
     methods:{
         initTable(){
