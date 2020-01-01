@@ -201,6 +201,7 @@ export default {
                         },{
                             headers: {
                                 'Content-Type': 'application/x-www-form-urlencoded',
+                                'token': localStorage.token
                             },
                             transformRequest: [function (data) {
                                 data = qs.stringify(data);

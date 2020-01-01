@@ -98,8 +98,8 @@
                 >
                 <el-table-column
                 fixed
-                prop="ClassID"
-                label="编号">
+                prop="ClassNum"
+                label="班级编号">
                 </el-table-column>
                 <el-table-column
                 prop="SpecialtyName"
