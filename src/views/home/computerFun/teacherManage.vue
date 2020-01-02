@@ -159,6 +159,10 @@ export default {
                     }
             }).then(function(response){
                 loading.close();
+                if(response.data == "未登录"){
+                    localStorage.isLogin = false;
+                    _self.$router.push("/login");
+                }  
                 _self.tableData4 = JSON.parse(response.data);   
             }).catch(function(error){
                 loading.close();
@@ -240,7 +244,11 @@ export default {
                             title: '失败',
                             message: '删除失败，该教师信息存在关联！'
                         });
-                    }else{
+                    }else if(data == "未登录"){
+                        localStorage.isLogin = false;
+                        _self.$router.push("/login");
+                    }  
+                    else{
                         _self.$notify.error({
                             duration:2000,
                             title: '失败',
@@ -281,6 +289,7 @@ export default {
             },{
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
+                    'token': localStorage.token
                 },
                 transformRequest: [function (data) {
                     data = qs.stringify(data);
@@ -299,6 +308,9 @@ export default {
                         title: '成功',
                         message: '修改成功'
                     });
+                }else if(response.data == "未登录"){
+                    localStorage.isLogin = false;
+                    _self.$router.push("/login");
                 }else{
                     _self.$notify.error({
                         duration:2000,

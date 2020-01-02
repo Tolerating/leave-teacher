@@ -36,8 +36,9 @@ export default {
             });
             let _self = this;
             let teaInfo = localStorage.teaInfo!=null?JSON.parse(localStorage.teaInfo):'';
-            let weekdayStartTime = moment().add(5 - new Date().getDay(),'days').format('YYYY-MM-DD');
-            let weekdayEndTime = moment().add(6 - new Date().getDay(),'days').format('YYYY-MM-DD');
+            let weekdayStartTime = moment().add(5 - new Date().getDay(),'days').format('YYYY/MM/DD');
+            
+            let weekdayEndTime = moment().add(6 - new Date().getDay(),'days').format('YYYY/MM/DD');
             this.$ajax.get(_self.baseUrl + "/TeacherAudit/WeekDayNow",{
                 params:{
                     start:weekdayStartTime,
@@ -59,15 +60,20 @@ export default {
                 }
             }).catch(function(error){
                 Indicator.close();
-                MessageBox("错误","");
                 _self.$message.error('连接服务器失败');
             });
         },
         weekAudit(){
             let _self = this;
             let weekdayStartTime = moment().add(5 - new Date().getDay(),'days').format('YYYY-MM-DD');
-            let weekdayEndTime = moment().add(6 - new Date().getDay(),'days').format('YYYY-MM-DD');
-            if(this.leaveRecord.length !== 0){
+            let weekdayEndTime = moment().add(6 - new Date().getDay(),'days').format('YYYY-MM-DD');           
+            console.log(moment().add(6 - new Date().getDay(),'days').format('YYYY-MM-DD'));
+            console.log(moment().add(7 - new Date().getDay(),'days').format('YYYY-MM-DD'));
+            console.log(new Date().getTime() != new Date(moment().add(6 - new Date().getDay(),'days')).getTime());
+            if(new Date().getTime() != (new Date(moment().add(6 - new Date().getDay(),'days')).getTime() || new Date(moment().add(7 - new Date().getDay(),'days')).getTime())){
+                MessageBox("提示","审核时间为周末");
+            }else{
+                if(this.leaveRecord.length !== 0){
                 this.$ajax.get(_self.baseUrl + "/TeacherAudit/TeacherAppr",{
                     params:{
                         start:weekdayStartTime,
@@ -93,6 +99,8 @@ export default {
                 });
             }            
         }
+            }
+            
     },
     mounted(){
         this.getLeaveRecord();

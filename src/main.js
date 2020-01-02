@@ -11,15 +11,9 @@ import 'muse-ui/dist/muse-ui.css';
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Vconsole from 'vconsole';
-// let echarts = require('echarts/lib/echarts');
-// require("echarts/lib/chart/pie");
-// require('echarts/lib/component/tooltip')
-// require('echarts/lib/component/legend')
-// require('echarts/lib/component/toolbox')
 // const vConsole =new Vconsole();
 // Vue.use(vConsole);
 Vue.prototype.$ajax = axios
-// Vue.prototype.$echarts = echarts
 Vue.use(ElementUI)
 Vue.use(animate)
 Vue.use(MintUI)
@@ -43,10 +37,9 @@ Vue.directive('enterNumber', {
 });
 
 axios.defaults.withCredentials=true
-// axios.defaults.headers.common["token"] = localStorage.token
 Vue.config.productionTip = false 
-// Vue.prototype.baseUrl = "http://118.25.137.129:35651/leave"
-Vue.prototype.baseUrl = "http://localhost:53285/leave"
+Vue.prototype.baseUrl = "http://118.25.137.129:35651/leave"
+// Vue.prototype.baseUrl = "http://localhost:53285/leave"
 new Vue({
   router,
   render: h => h(App)

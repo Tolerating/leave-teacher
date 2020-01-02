@@ -24,7 +24,7 @@
 <script>
 import { MessageBox } from 'mint-ui'
 export default {
-    name:"leaveCard",
+    name:"weekdayCard",
     data(){
         return{
            
@@ -33,11 +33,6 @@ export default {
     props:{
         leaveObj:Object
     },
-    methods:{
-        showReason(e){
-            MessageBox('事由',e.srcElement.innerText);   
-        },
-    }
 }
 </script>
 
